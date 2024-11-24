@@ -17,23 +17,35 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
       }
 
       .header {
-        width: 100%;
         background-color: var(--ph-black);
-        padding: 20px 0;
-        text-align: center;
-        margin-bottom: 40px;
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .logo {
         color: #ffffff;
-        font-size: 32px;
-        font-weight: bold;
+        font-size: 36px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
       .logo span {
@@ -41,80 +53,112 @@
       }
 
       .main-content {
-        max-width: 800px;
+        flex: 1;
+        max-width: 1200px;
         width: 90%;
-        margin: 0 auto;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .hero-section {
+        text-align: center;
+        margin: 60px 0;
       }
 
       .subscribe-button {
         background-color: var(--ph-orange);
         color: #ffffff;
         border: none;
-        padding: 15px 40px;
-        border-radius: 25px;
-        font-size: 18px;
+        padding: 18px 50px;
+        border-radius: 30px;
+        font-size: 20px;
         cursor: pointer;
-        margin: 20px 0 40px 0;
         font-weight: bold;
-        transition: transform 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 144, 0, 0.3);
       }
 
       .subscribe-button:hover {
-        transform: scale(1.05);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 144, 0, 0.4);
       }
 
       .subscribe-button:active {
-        transform: scale(0.95);
+        transform: translateY(1px);
       }
 
       .features {
         text-align: center;
-        margin-bottom: 40px;
+        margin: 30px 0 60px;
       }
 
       .features p {
-        color: #888;
-        font-size: 16px;
+        color: #999;
+        font-size: 18px;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .section-title {
+        color: var(--ph-orange);
+        font-size: 24px;
+        margin-bottom: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
       }
 
       .clients-section {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
       }
 
       .client-card {
         background-color: #2a2a2a;
-        border-radius: 10px;
-        padding: 20px;
+        border-radius: 15px;
+        padding: 25px;
         text-align: center;
-        transition: transform 0.2s ease;
+        transition: all 0.3s ease;
+        border: 1px solid #333;
       }
 
       .client-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-color: var(--ph-orange);
       }
 
       .client-card h3 {
         color: var(--ph-orange);
+        font-size: 22px;
         margin-bottom: 15px;
       }
 
       .client-card p {
-        color: #888;
-        margin-bottom: 20px;
-        font-size: 14px;
+        color: #999;
+        margin-bottom: 25px;
+        font-size: 15px;
+        line-height: 1.6;
       }
 
       .client-link {
         color: var(--ph-orange);
         text-decoration: none;
         font-weight: bold;
+        padding: 8px 20px;
+        border: 2px solid var(--ph-orange);
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        display: inline-block;
       }
 
       .client-link:hover {
-        text-decoration: underline;
+        background-color: var(--ph-orange);
+        color: #ffffff;
       }
 
       .copy-success {
@@ -123,24 +167,45 @@
         left: 50%;
         transform: translateX(-50%);
         background: var(--ph-orange);
-        padding: 10px 20px;
-        border-radius: 5px;
+        color: #ffffff;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-weight: bold;
         display: none;
         animation: fadeInOut 2s ease;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       }
 
       @keyframes fadeInOut {
         0% {
           opacity: 0;
+          transform: translate(-50%, -20px);
         }
         20% {
           opacity: 1;
+          transform: translate(-50%, 0);
         }
         80% {
           opacity: 1;
+          transform: translate(-50%, 0);
         }
         100% {
           opacity: 0;
+          transform: translate(-50%, -20px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 28px;
+        }
+        .subscribe-button {
+          padding: 15px 40px;
+          font-size: 18px;
+        }
+        .features p {
+          font-size: 16px;
         }
       }
     </style>
@@ -149,26 +214,32 @@
     <div id="copySuccess" class="copy-success">订阅地址已复制到剪贴板！</div>
 
     <div class="header">
-      <div class="logo">VLess<span>Share</span></div>
+      <div class="header-content">
+        <div class="logo">VLess<span>Share</span></div>
+      </div>
     </div>
 
     <div class="main-content">
-      <div class="features">
+      <div class="hero-section">
         <button class="subscribe-button" id="subscribeBtn">一键订阅</button>
-        <p>100+高速节点 | 实时更新 | 支持多客户端</p>
+        <div class="features">
+          <p>100+ 优质节点 | 24H 实时更新 | 全平台客户端支持</p>
+        </div>
       </div>
 
+      <h2 class="section-title">推荐客户端</h2>
       <div class="clients-section">
         <div class="client-card">
           <h3>v2rayN</h3>
           <p>
-            Windows平台最受欢迎的代理工具，界面简洁，功能强大。支持多种协议，可自定义路由规则。
+            Windows
+            平台最受欢迎的代理工具，界面简洁，功能强大。支持多种协议，可自定义路由规则。
           </p>
           <a
             href="https://github.com/2dust/v2rayN"
             class="client-link"
             target="_blank"
-            >项目主页</a
+            >下载地址</a
           >
         </div>
 
@@ -182,20 +253,33 @@
             href="https://github.com/hiddify/hiddify-next"
             class="client-link"
             target="_blank"
-            >项目主页</a
+            >下载地址</a
           >
         </div>
 
         <div class="client-card">
           <h3>Karing</h3>
-          <p>iOS平台优秀的代理工具，支持多种协议，可通过TestFlight安装。</p>
-          <a href="#" class="client-link" target="_blank">项目主页</a>
+          <p>
+            强大的代理工具，支持多平台，兼容多种协议配置。完美支持
+            Clash/Sing-box 配置。
+          </p>
+          <a
+            href="https://github.com/KaringX/karing"
+            class="client-link"
+            target="_blank"
+            >下载地址</a
+          >
         </div>
 
         <div class="client-card">
           <h3>FClash</h3>
-          <p>基于 Clash 内核的代理工具，支持策略分组，界面美观，规则丰富。</p>
-          <a href="#" class="client-link" target="_blank">项目主页</a>
+          <p>基于 ClashMeta 内核的代理工具，界面精美，功能丰富，支持多平台。</p>
+          <a
+            href="https://github.com/chen08209/FlClash"
+            class="client-link"
+            target="_blank"
+            >下载地址</a
+          >
         </div>
       </div>
     </div>
