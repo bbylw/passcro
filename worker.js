@@ -6,26 +6,15 @@ async function handleRequest(request) {
   const url = new URL(request.url)
   
   if (url.pathname === '/nodes') {
-    try {
-      const nodesResponse = await fetch('https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml')
-      if (!nodesResponse.ok) {
-        throw new Error('Failed to fetch nodes')
+    const subscribeUrl = 'https://raw.githubusercontent.com/zhangkaiitugithub/passcro/main/speednodes.yaml'
+    return new Response(subscribeUrl, {
+      headers: {
+        'content-type': 'text/plain;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
       }
-      const nodesData = await nodesResponse.text()
-      
-      return new Response(nodesData, {
-        headers: {
-          'content-type': 'text/yaml;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'no-cache'
-        }
-      })
-    } catch (error) {
-      return new Response('Error fetching nodes', { status: 500 })
-    }
+    })
   }
   
-  // 默认返回主页
   return new Response(HTML_CONTENT, {
     headers: {
       'content-type': 'text/html;charset=UTF-8'
@@ -33,7 +22,6 @@ async function handleRequest(request) {
   })
 }
 
-// 将完整的HTML内容内联到worker中
 const HTML_CONTENT = `<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
